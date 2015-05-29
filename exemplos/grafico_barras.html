@@ -1,0 +1,52 @@
+<html>
+<head>
+	<meta charset = "UTF-8" />
+	<title>Grafico de barras</title>
+	<style type="text/css">
+		[type="text"]{
+			width: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Gráfico de Barras</h1>
+	<form action="" name"altura" id="alturas">
+		Informe as alturas das barras:
+		<input type="text" name="h1" value=10>
+		<input type="text" name="h2" value=101>
+		<input type="text" name="h3" value=120>
+		<input type="text" name="h4" value=92>
+		<input type="text" name="h5" value=60>
+	</form>
+
+	<form action="" name="largura">
+		Informe as larguras das barras:
+		<input type="text" name="w1" value=100>
+	</form>
+
+	<form action="" name="gerar">
+		<input type="button" name="gerar" value="Gerar gráfico">
+	</form>
+
+	<img src="bar.png" width=0 height=0>
+	<img src="bar.png" width=0 height=0>
+	<img src="bar.png" width=0 height=0>
+	<img src="bar.png" width=0 height=0>
+	<img src="bar.png" width=0 height=0>
+
+	<script type="text/javascript">
+		inputs = document.querySelectorAll("#alturas input");
+		images = document.querySelectorAll("img");
+		document.gerar.gerar.onclick = function(){
+			for(i=0;i<inputs.length;i++){
+				//images[i].height = inputs[i].value;
+				images[i].height = Math.floor((Math.random() * 200) + 1);
+				images[i].width = document.largura.w1.value;
+				console.log(inputs[i].value);
+			}
+			console.log("Ok!");
+		}
+	</script>
+	
+</body>
+</html>
