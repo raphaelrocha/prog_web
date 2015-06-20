@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+    <Html>  
+        <head>
+            <style type="text/css">
+                td{
+                    *border: 3px solid black;
+                }
+                .emcima {
+                    background-image: url('h0.gif');
+                }
+
+                .fora {
+                    background-image: url('notsel.gif');
+                }
+
+                .fixa {
+                    background-image: url('h1.gif');
+                }
+
+                .pegou{
+                    background-image: url('p1.gif');
+                    border-radius: 7px;
+                    min-width: 40px;
+                    min-height: 40px;  
+                    width: 40px;
+                    height: 40px; 
+                }
+
+                .no{
+                    *background-color: #BAC6CC;
+                    border-radius: 12px;
+                    background: transparent url('d.gif') center;
+                    min-width: 5px;
+                    min-height: 5px;
+                    width: 5px;
+                    height: 5px;
+                }
+                
+
+                .quadrado{
+                    background: transparent url('p0.gif') center;
+                    border-radius: 7px;
+                    min-width: 40px;
+                    min-height: 40px;  
+                    width: 40px;
+                    height: 40px;  
+                }
+            </style>  
+            <script type="text/javascript"> 
+
+            
+                
+
+                
+            
+
+            function tableText(tableCell) {
+                    //alert(tableCell.id);
+                    var urlString = 'url(p1.gif)';
+                    tableCell.style.backgroundImage = urlString;
+                    //alert(tableCell.id);
+                }
+
+            function verifica(table){
+                for (var i = 0; i < table.rows.length; i++) {
+                        for (var j = 0; j < table.rows[i].cells.length; j++){
+                            var id = table.rows[i].cells[j].id.substring(0, 3);
+                            if(table.rows[i].cells[j].className == "quadrado"){
+                                //tableText(table.rows[i].cells[j]);
+                                //table.rows[i].cells[j].className = "pegou";
+
+                                var valida=0;
+                                var elemento;
+
+                                var result = table.rows[i].cells[j].id.split(";");
+
+                                var linha = result[0];
+                                var id = result[1];
+                                console.log("linha: "+linha+" curId: "+id);
+
+                                linha--;
+                                console.log("checa: "+linha+";"+id);
+
+                                elemento = document.getElementById(linha+";"+id);
+                                if(elemento.className == "fixa"){
+                                    valida++;
+                                }
+
+                                
+                                linha = result[0];
+                                id = result[1];
+                                id--;
+                                console.log("checa: "+linha+";"+id);
+                                elemento = document.getElementById(linha+";"+id);
+                                if(elemento.className == "fixa"){
+                                    valida++;
+                                }
+
+                                linha = result[0];
+                                id = result[1];
+                                id++;
+                                console.log("checa: "+linha+";"+id);
+                                elemento = document.getElementById(linha+";"+id);
+                                if(elemento.className == "fixa"){
+                                    valida++;
+                                }
+
+                                linha = result[0];
+                                id = result[1];
+                                linha++;
+                                console.log("checa: "+linha+";"+id);
+                                elemento = document.getElementById(linha+";"+id);
+                                if(elemento.className == "fixa"){
+                                    valida++;
+                                }
+
+                                console.log("valida: "+valida);
+                                
+                                if(valida==4){
+                                    //if(table.rows[i].cells[j].className = "fixa"){
+                                     table.rows[i].cells[j].className = "pegou";
+                                    //}
+                                }
+                            }
+
+                        }
+                    }
+
+            }
+
+            function novaLinha(){
+
+                
+                var linhaImpar=[];
+                var linhaPar=[];
+                var x;
+                var i;
+
+                var linha=0;
+                var id=0;
+                
+                //dificuldade
+                var limite = 10;
+                
+
+                if(limite%2==0){
+                    limite++;
+                }
+                var fim = limite;
+                var linhas = limite;
+
+                for (i=0;i<linhas;i++){
+                    if(i%2==0){
+                        linhaImpar[0] = "<tr>";
+                        for(x = 1; x <= fim; x++){
+                            if(x % 2 !=0){
+                                linhaImpar[x] = "<td id='"+linha+";"+id+"' class='no'></td>";
+                            }else{
+                                linhaImpar[x] = "<td id='"+linha+";"+id+"' class='fora'></td>";
+                            }
+                            id++;                 
+                        }
+                        id=0;
+                        linha++;
+
+                        linhaImpar[fim+1] = "</tr>";
+                        var ultimo = linhaImpar.length;
+                        x=0;
+                        var estrutura="";
+                        for (x=0;x<ultimo;x++){
+                            estrutura = estrutura + linhaImpar[x];
+                        }
+
+                        document.getElementById("tabela").innerHTML += estrutura;
+
+                        x=0;
+                        ultimo=0;
+
+                    }else{
+                        linhaPar[0] = "<tr>";
+                        for(x = 1; x <= fim; x++){
+                            if(x % 2 !=0){
+                                linhaPar[x] = "<td id='"+linha+";"+id+"'class='fora'></td>";
+                            }else{
+                                linhaPar[x] = "<td id='"+linha+";"+id+"'class='quadrado'></td>";
+                            }
+                            id++;               
+                        }
+                        id=0;
+                        linha++;
+
+                        linhaPar[fim+1] = "</tr>";
+                        var ultimo = linhaPar.length;
+                        x=0;
+                        var estrutura="";
+                        for (x=0;x<ultimo;x++){
+                            estrutura = estrutura + linhaPar[x];
+                        }
+
+                        document.getElementById("tabela").innerHTML += estrutura;
+
+                        x=0;
+                        ultimo=0;
+                    }
+                }
+            }             
+
+            </script>  
+        </head>  
+  
+    <body>  
+        <table id="tabela">  
+           
+        </table>  
+
+        <script>
+            novaLinha();
+            var table = document.getElementById("tabela");
+                if (table != null) {
+                    for (var i = 0; i < table.rows.length; i++) {
+                        for (var j = 0; j < table.rows[i].cells.length; j++){
+                            table.rows[i].cells[j].onmouseover = function() 
+                            { 
+                                if((this.className!="quadrado")&&(this.className!="pegou"))
+                                {
+                                    if((this.className!="fixa")&&(this.className!="no"))
+                                    {
+                                        this.className = "emcima";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    for (var i = 0; i < table.rows.length; i++) {
+                        for (var j = 0; j < table.rows[i].cells.length; j++){
+                            table.rows[i].cells[j].onmouseout = function() 
+                            { 
+                                if((this.className!="quadrado")&&(this.className!="pegou"))
+                                {
+                                    if((this.className!="fixa")&&(this.className!="no"))
+                                    {
+                                        this.className = "fora";
+                                    }     
+                                }
+
+                            }
+                        } 
+                    }
+                    for (var i = 0; i < table.rows.length; i++) {
+                        for (var j = 0; j < table.rows[i].cells.length; j++)
+                            table.rows[i].cells[j].onclick = function() {
+                            { 
+                                if((this.className!="quadrado")&&(this.className!="pegou"))
+                                {
+                                    if((this.className!="fixa")&&(this.className!="no"))
+                                    {
+                                        this.className = "fixa";
+                                        verifica(table);
+                                    }    
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+        </script>
+    </body>  
+</html>  
