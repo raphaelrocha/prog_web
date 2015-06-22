@@ -1,4 +1,4 @@
-novaLinha();
+novaLinha(4);
             
             var table = document.getElementById("tabela");
                 if (table != null) {

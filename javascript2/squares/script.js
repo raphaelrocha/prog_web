@@ -5,7 +5,12 @@
             var placarJ1=0;
             var placarJ2=0;
 
+            var total=0;
+            var conquistados=0;
+
+
             function inicia(){
+                //alert("total = "+total);
                 jogador1 = document.getElementById("jogador1").value;
                 jogador2 = document.getElementById("jogador2").value;
 
@@ -105,11 +110,13 @@
                                     table.rows[i].cells[j].className = "pegou1";
                                     continua=1;
                                     placarJ1++;
+                                    conquistados++;
                                     document.getElementById("mostra-placar-j1").innerHTML = placarJ1;
                                 }else if(vez==2){
                                     table.rows[i].cells[j].className = "pegou2";
                                     continua=1;
                                     placarJ2++;
+                                    conquistados++;
                                     document.getElementById("mostra-placar-j2").innerHTML = placarJ2;
                                 }
                             }
@@ -134,10 +141,20 @@
                         continua=0;
                     }
                 }
+                if(conquistados==total){
+                    if(placarJ1>placarJ2){
+                        alert('VENCEDOR'+jogador1+'.\nVocê conquistou '+placarJ1+" quadrados.");
+                    }else if(placarJ2>placarJ1){
+                        alert('VENCEDOR '+jogador2+'.\nVocê conquistou '+placarJ2+" quadrados.");
+                    }else{
+                        alert("EMPATE!");
+                    }
+                    reinicia();
+                }
             }
 
 
-            function novaLinha(){
+            function novaLinha(qtde){
                 document.getElementById("jogador1").value="";
                 document.getElementById("jogador2").value="";
                 document.getElementById("bt-reini").style.display = 'none';
@@ -163,13 +180,24 @@
                 var linha=0;
                 var id=0;
                 
+                var altura=0;
+                var largura=0;
+
                 //dificuldade
-                var limite = 16;
+                var limite = qtde;
+
+
+
                 
 
                 if(limite%2==0){
                     limite++;
                 }
+
+                
+                
+
+                
                 var fim = limite;
                 var linhas = limite;
 
@@ -207,6 +235,7 @@
                                 linhaPar[x] = "<td id='"+linha+";"+id+"'class='fora'></td>";
                             }else{
                                 linhaPar[x] = "<td id='"+linha+";"+id+"'class='quadrado'></td>";
+                                total++;
                             }
                             id++;               
                         }
@@ -226,6 +255,7 @@
                         x=0;
                         ultimo=0;
                     }
+
                 }
             }      
 
