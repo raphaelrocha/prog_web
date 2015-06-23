@@ -2,13 +2,9 @@
     <Html>  
         <head>
             <link rel="stylesheet" href="styles.css">
-              
             <script src="script.js" charset="UTF-8"></script>
-            
         </head>  
-  
     <body> 
-          
         <div class="corpo-jogo">
             <div class="div-field-set">
                 <fieldset class="fs">
@@ -38,7 +34,6 @@
                             </tr>
                         </table>
                         <hr id="hr-placar">
-
                     </div>
                     <br>
                     <legend class="legend"> SQUARES </legend>
@@ -53,31 +48,37 @@
                     <input type="text" id="jogador2"/>
                     <br>
                     <br>
+                    <label  for="DIFICULDADE" class="labels"> Dificuldade: </label>
+                    <br>
+                    <input type="button" id="btnMenos" value="<" onClick="ajustaMenos()" class="buttonDf"/>
+                    <input type="text" id="display-dificuldade" size="2px" style="text-align:center"/>
+                    <input type="button" id="btnMais" value=">" onClick="ajustaMais()" class="buttonDf"/>
+                    <br>
+                    <br>
                     <div id="bt-ini">   
                         <input class="button" type="button" value="Jogar"  onclick="inicia();"/>
                     </div>
                     <div id="bt-reini">
                         <input class="button" type="button" value="Novo jogo"  onclick="reinicia();"/>
                     </div> 
-
-
                 </fieldset>
             </div>
 
             <div class="footer">
-                    <p class="p-footer">Raphael</p>
+                    <p class="p-footer">Raphael (prog-web-ufam 2015)</p>
             </div>
-
-
-            
+  
             <div class="div-jogo" id="div-jogo">
                 <center>
                     <table id="tabela">  
                     </table> 
                 </center>
-
             </div>
         </div> 
     </body>
-    <script src="script2.js" charset="UTF-8"></script>  
+
+    <script type="text/javascript" charset="UTF-8">
+        criaTabuleiro(-1);
+    </script>
+
 </html>  
