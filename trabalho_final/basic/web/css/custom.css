@@ -1,0 +1,19 @@
+.sucess-summary {
+    color: #008000;
+    background: #98FB98;
+    border-left: 3px solid #006400;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+#icomp_title {
+	
+	text-align: left;
+	cursor:pointer;
+}
+
+.icomptitle {
+	color: black;
+	text-align: left;
+	cursor:pointer;
+}
