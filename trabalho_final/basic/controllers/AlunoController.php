@@ -59,7 +59,7 @@ class AlunoController extends Controller
         $sql = 'SELECT ano_ingresso FROM aluno WHERE id='.$id;
         $valor = Aluno::findBySql($sql)->one();
         $ano = $valor->ano_ingresso;
-        $model = $this->findModel($id);
+        $model = Aluno::findOne($id);
         $alunosAno = Aluno::find()->where('ano_ingresso='.$ano)->count();
 
         return $this->render('view', [
